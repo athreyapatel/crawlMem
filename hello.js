@@ -9,8 +9,10 @@ if (isMainThread) {
   });
   worker.postMessage('Main thread');
 } else {
+  //listen from parent thread
   parentPort.once('message', (message) => {
     console.log(message);
+    //send message to parent thread
     parentPort.postMessage('worker thread');
   });
 }
